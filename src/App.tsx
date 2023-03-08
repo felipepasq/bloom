@@ -1,16 +1,23 @@
 import GlobalStyle from './styles/global'
 import Pagination from './components/Pagination'
 import { ThemeProvider } from 'styled-components'
+import { api } from './services/api'
 import { defaultTheme } from './styles/themes/default'
+import { useEffect } from 'react'
 
 function App() {
+  const fetchData = async () => {
+    const response = await api.getAllBooks()
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
-    <div>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyle />
-        <Pagination totalPages={6} />
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle />
+    </ThemeProvider>
   )
 }
 
