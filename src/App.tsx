@@ -1,11 +1,15 @@
 import GlobalStyle from './styles/global'
+import Pagination from './components/Pagination'
+import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from './styles/themes/default'
 
 function App() {
   return (
     <div>
-      <GlobalStyle theme={defaultTheme} />
-      <h1>Hello world</h1>
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <Pagination totalPages={6} />
+      </ThemeProvider>
     </div>
   )
 }

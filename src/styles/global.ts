@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.small_paragraph};
   }
+
+  html {
+  font-size: 62.5%;
+  }
   
   body  {
     -webkit-font-smoothing: antialiased;
