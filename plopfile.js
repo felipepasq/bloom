@@ -12,7 +12,7 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
+        path: 'src/components/{{pascalCase name}}/index.tsx',
         templateFile: 'plop-templates/Component.js.hbs'
       }
     ]
@@ -30,7 +30,7 @@ export default function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/pages/{{pascalCase name}}/{{pascalCase name}}.tsx',
+        path: 'src/pages/{{pascalCase name}}/index.tsx',
         templateFile: 'plop-templates/Component.js.hbs'
       }
     ]
