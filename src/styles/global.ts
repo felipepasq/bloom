@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    font-family: ${({ theme }) => theme.fonts.small_paragraph};
   }
   
   body  {

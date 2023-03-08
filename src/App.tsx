@@ -1,6 +1,10 @@
+import GlobalStyle from './styles/global'
+import { defaultTheme } from './styles/themes/default'
+
 function App() {
   return (
-    <div className="App">
+    <div>
+      <GlobalStyle theme={defaultTheme} />
       <h1>Hello world</h1>
     </div>
   )
