@@ -8,15 +8,18 @@ type ViewOptionsBarProps = {
   barText: string
   viewType: 'list' | 'grid'
   setViewType: React.Dispatch<React.SetStateAction<'list' | 'grid'>>
+  setItensPerPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 const ViewOptionsBar: React.FC<ViewOptionsBarProps> = ({
   barText,
   viewType,
-  setViewType
+  setViewType,
+  setItensPerPage
 }) => {
   const handleChange = (param: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(param.target.value)
+    const toNumber = Number(param.target.value)
+    setItensPerPage(toNumber)
   }
   const handleClick = (value: 'list' | 'grid') => {
     setViewType(value)

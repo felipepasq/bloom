@@ -6,11 +6,11 @@ export const Main = styled.main`
   align-items: center;
 `
 
-type BookListProps = {
+type CategoriesListListProps = {
   viewType: 'list' | 'grid'
 }
 
-export const BookList = styled.div<BookListProps>`
+export const CategoriesList = styled.div<CategoriesListListProps>`
   display: ${({ viewType }) => (viewType === 'list' ? 'flex' : 'grid')};
   grid-template-columns: ${({ viewType }) =>
     viewType === 'grid' ? '1fr 1fr' : 'unset'};

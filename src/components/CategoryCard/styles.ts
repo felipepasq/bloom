@@ -36,7 +36,7 @@ export const Container = styled.div<ContainerProps>`
 
   @media (min-width: 768px) {
     display: ${({ viewType }) => (viewType === 'grid' ? 'flex' : 'grid')};
-    grid-template-columns: 0.28fr 0.31fr 0.24fr 0.18fr;
+    grid-template-columns: 0.6fr 0.23fr 0.18fr;
     max-width: 1080px;
     align-items: ${({ viewType }) =>
       viewType === 'grid' ? 'unset' : 'center'};
@@ -55,5 +55,25 @@ export const Container = styled.div<ContainerProps>`
       margin-bottom: ${({ viewType }) =>
         viewType === 'list' ? '0' : '0.4rem'};
     }
+  }
+
+  .categoryTitle {
+  }
+`
+type CategoryTileContainerProps = {
+  viewType: 'list' | 'grid'
+}
+
+export const CategoryTileContainer = styled.div<CategoryTileContainerProps>`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: ${({ viewType }) =>
+      viewType === 'list' ? 'center' : 'unset'};
+    gap: ${({ viewType }) => (viewType === 'list' ? '1.2rem' : '0.4rem')};
+    flex-direction: ${({ viewType }) =>
+      viewType === 'list' ? 'row' : 'column'};
   }
 `
