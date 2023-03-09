@@ -15,6 +15,10 @@ export const Container = styled.div`
 
   @media (min-width: 768px) {
     padding: 1rem 12rem;
+
+    h3 {
+      font-size: 2.4rem;
+    }
   }
 `
 export const ViewOptionsContainer = styled.div`
@@ -29,6 +33,14 @@ export const ViewOptionsContainer = styled.div`
 
   p:nth-of-type(2) {
     display: none;
+  }
+
+  img {
+    cursor: pointer;
+    :hover {
+      filter: opacity(0.6);
+      transition: 0.3s;
+    }
   }
 
   @media (min-width: 768px) {

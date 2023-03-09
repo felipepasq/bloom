@@ -3,7 +3,8 @@ export const defaultTheme = {
     primary: '#5062F0',
     secondary: '#1F2445',
     white: '#ffffff',
-    light_gray: '#F2F3F8'
+    light_gray: '#F2F3F8',
+    gray: '#454A67'
   },
   fonts: {
     text: 'Roboto',

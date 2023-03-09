@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  margin-left: 100px;
-  margin-top: 100px;
   display: flex;
   gap: 0.7rem;
 `
@@ -22,6 +20,7 @@ export const PaginationButton = styled.button<PaginationButtonProps>`
   border: 1px solid #1f2445;
   font-size: 1.2rem;
   font-weight: 700;
+  margin: auto;
 
   :hover {
     transition-duration: 0.3s;
