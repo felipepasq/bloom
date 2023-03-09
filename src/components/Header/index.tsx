@@ -1,7 +1,7 @@
 import * as S from './styles'
 import Logo from '../../assets/logo.svg'
 import Star from '../../assets/start.svg'
-import SearchBar from '../SearchBar/SearchBar'
+import SearchBar from '../SearchBar'
 
 const Header: React.FC = () => {
   return (

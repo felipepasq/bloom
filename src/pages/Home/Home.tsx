@@ -1,8 +1,8 @@
-import Header from '../../components/Header/Header'
+import ViewOptionsBar from '../../components/ViewOptionsBar'
 const Home = () => {
   return (
     <>
-      <Header />
+      <ViewOptionsBar barText="Gêneros" />
     </>
   )
 }
