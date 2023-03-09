@@ -1,22 +1,22 @@
 import * as S from './styles'
-
+import { Category } from '../../types'
+import { formatDate } from '../../utils'
 type CategoryCardProps = {
-  categoryTitle: string
+  category: Category
   viewType: 'list' | 'grid'
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({
-  categoryTitle,
-  viewType
-}) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, viewType }) => {
   return (
     <S.Container viewType={viewType}>
       <S.CategoryTileContainer viewType={viewType}>
-        <a>{categoryTitle}</a>
+        <a>{category.display_name}</a>
         <span>Atualizada em 00/00/00</span>
       </S.CategoryTileContainer>
-      <p>Última publicação: 00/00/00</p>
-      <p>Publicação mais antiga: 00/00/00</p>
+      <p>Última publicação: {formatDate(category.newest_published_date)}</p>
+      <p>
+        Publicação mais antiga: {formatDate(category.oldest_published_date)}
+      </p>
     </S.Container>
   )
 }

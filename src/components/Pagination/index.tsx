@@ -6,28 +6,31 @@ import * as S from './styles'
 
 type PaginationProps = {
   totalPages: number
-  currentPage?: number
+  currentPage: number
   setCurrentPage: (pageNumber: number) => void
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   totalPages,
-  currentPage = 1,
+  currentPage,
   setCurrentPage
 }) => {
   const generateButtons = useMemo(() => {
     const visibleButtons = 6
-    const halfVisible = Math.floor(visibleButtons / 2)
-    let start = 1
-    let end = totalPages
-    if (totalPages > visibleButtons) {
-      if (currentPage <= halfVisible) {
-        end = visibleButtons
-      } else if (currentPage >= totalPages - halfVisible) {
-        start = totalPages - visibleButtons + 1
-      } else {
-        start = currentPage - halfVisible
-        end = currentPage + halfVisible
+    const beforeVisible = 2
+    const afterVisible = 3
+
+    let start = currentPage - beforeVisible
+    let end = currentPage + afterVisible
+
+    if (start <= 0) {
+      start = 1
+      end = start + visibleButtons - 1
+    } else if (end > totalPages) {
+      end = totalPages
+      start = end - visibleButtons + 1
+      if (start <= 0) {
+        start = 1
       }
     }
 
@@ -63,11 +66,19 @@ const Pagination: React.FC<PaginationProps> = ({
     <S.Container>
       <>
         <PaginationButton onClick={handlePreviousPage}>
-          <img src={ArrowLeft} className="arrow" alt="Previous page" />
+          <img
+            src={ArrowLeft}
+            className="arrow"
+            alt="Seta que indica ir para a página anterior"
+          />
         </PaginationButton>
         {generateButtons}
         <PaginationButton onClick={handleNextPage}>
-          <img src={ArrowRight} className="arrow" alt="Next page" />
+          <img
+            src={ArrowRight}
+            className="arrow"
+            alt="Seta que indica ir para a próxima página"
+          />
         </PaginationButton>
       </>
     </S.Container>

@@ -36,7 +36,7 @@ export const Container = styled.div<ContainerProps>`
 
   @media (min-width: 768px) {
     display: ${({ viewType }) => (viewType === 'grid' ? 'flex' : 'grid')};
-    grid-template-columns: 0.6fr 0.23fr 0.18fr;
+    grid-template-columns: 0.6fr 0.22fr 0.19fr;
     max-width: 1080px;
     align-items: ${({ viewType }) =>
       viewType === 'grid' ? 'unset' : 'center'};
@@ -44,6 +44,7 @@ export const Container = styled.div<ContainerProps>`
 
     a {
       font-size: 2rem;
+      cursor: pointer;
     }
 
     span {
