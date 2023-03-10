@@ -4,7 +4,8 @@ export const defaultTheme = {
     secondary: '#1F2445',
     white: '#ffffff',
     light_gray: '#F2F3F8',
-    gray: '#454A67'
+    gray: '#454A67',
+    dark_blue: '#0E1337'
   },
   fonts: {
     text: 'Roboto',

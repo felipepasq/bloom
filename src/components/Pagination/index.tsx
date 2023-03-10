@@ -16,7 +16,7 @@ const Pagination: React.FC<PaginationProps> = ({
   setCurrentPage
 }) => {
   const generateButtons = useMemo(() => {
-    const visibleButtons = 6
+    const visibleButtons = totalPages < 6 ? totalPages : 6
     const beforeVisible = 2
     const afterVisible = 3
 

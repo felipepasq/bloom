@@ -4,24 +4,25 @@ import BlueGridIcon from '../../assets/blue-grid.svg'
 import GreyGridIcon from '../../assets/grey-grid.svg'
 import GreyListIcon from '../../assets/grey-list.svg'
 import React from 'react'
+import { useView } from '../../context/ViewContext'
 
 type ViewOptionsBarProps = {
   barText: string
-  viewType: 'list' | 'grid'
-  setViewType: React.Dispatch<React.SetStateAction<'list' | 'grid'>>
   setItemsPerPage: React.Dispatch<React.SetStateAction<number>>
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
   itemsPerPage: number
 }
 
 const ViewOptionsBar: React.FC<ViewOptionsBarProps> = ({
   barText,
-  viewType,
-  setViewType,
   setItemsPerPage,
-  itemsPerPage
+  itemsPerPage,
+  setCurrentPage
 }) => {
+  const { viewType, setViewType } = useView()
   const handleChange = (param: React.ChangeEvent<HTMLSelectElement>) => {
     const toNumber = Number(param.target.value)
+    setCurrentPage(1)
     setItemsPerPage(toNumber)
   }
   const handleClick = (value: 'list' | 'grid') => {

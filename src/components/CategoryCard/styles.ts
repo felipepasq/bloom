@@ -45,6 +45,11 @@ export const Container = styled.div<ContainerProps>`
     a {
       font-size: 2rem;
       cursor: pointer;
+      text-decoration: underline;
+
+      :hover {
+        text-decoration: none;
+      }
     }
 
     span {
@@ -55,6 +60,7 @@ export const Container = styled.div<ContainerProps>`
     p:first-of-type {
       margin-bottom: ${({ viewType }) =>
         viewType === 'list' ? '0' : '0.4rem'};
+      margin-top: ${({ viewType }) => (viewType === 'list' ? '0' : 'auto')};
     }
   }
 

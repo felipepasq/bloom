@@ -5,6 +5,10 @@ const api = {
   getAllCategories: () =>
     axios.get(
       `https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=${apiKey}`
+    ),
+  getBookByCategory: (category: string) =>
+    axios.get(
+      `https://api.nytimes.com/svc/books/v3/lists/${category}.json?api-key=${apiKey}`
     )
 }
 
