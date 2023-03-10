@@ -2,7 +2,6 @@ import GlobalStyle from './styles/global'
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from './styles/themes/default'
 import { RouterProvider } from 'react-router-dom'
-import { SearchContextProvider } from './context/SearchContext'
 import { router } from './Router'
 import { ViewContextProvider } from './context/ViewContext'
 import 'react-toastify/dist/ReactToastify.css'
@@ -25,9 +24,7 @@ function App() {
         theme="colored"
       />
       <ViewContextProvider>
-        <SearchContextProvider>
-          <RouterProvider router={router} />
-        </SearchContextProvider>
+        <RouterProvider router={router} />
       </ViewContextProvider>
     </ThemeProvider>
   )
