@@ -74,6 +74,7 @@ export const BookTitleContainer = styled.div<BookTitleContainerProps>`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+
   h3 {
     font-size: 1.4rem;
     font-family: ${({ theme }) => theme.fonts.text};
@@ -94,8 +95,16 @@ export const BookTitleContainer = styled.div<BookTitleContainerProps>`
   }
 
   @media (min-width: 768px) {
+    margin-bottom: ${({ viewType }) =>
+      viewType === 'list' ? '0.5rem' : '0.8rem'};
+
     flex-direction: ${({ viewType }) =>
       viewType === 'list' ? 'row' : 'column'};
+
+    div {
+      margin-bottom: ${({ viewType }) =>
+        viewType === 'list' ? '0' : '0.9rem'};
+    }
   }
 `
 
