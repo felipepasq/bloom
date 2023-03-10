@@ -28,9 +28,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
         <p>{book.rank}</p>
         <S.PurchaseButton viewType={viewType}>
           Compre por
-          {book.price === '0.00'
-            ? ` R$${generateRandomPrice()},90`
-            : ` R$${book.price},90`}
+          {book.price}
         </S.PurchaseButton>
       </S.BookInfoContainer>
     </S.Container>

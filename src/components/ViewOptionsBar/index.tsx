@@ -20,8 +20,8 @@ const ViewOptionsBar: React.FC<ViewOptionsBarProps> = ({
   setCurrentPage
 }) => {
   const { viewType, setViewType } = useView()
-  const handleChange = (param: React.ChangeEvent<HTMLSelectElement>) => {
-    const toNumber = Number(param.target.value)
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const toNumber = Number(event.target.value)
     setCurrentPage(1)
     setItemsPerPage(toNumber)
   }

@@ -43,6 +43,7 @@ export const ImageContainer = styled.div<ImageContainerProps>`
   }
 
   @media (min-width: 768px) {
+    width: ${({ viewType }) => (viewType === 'list' ? '16.7rem' : '15rem')};
     img {
       height: ${({ viewType }) => (viewType === 'list' ? '16.7rem' : '15rem')};
       width: max-content;

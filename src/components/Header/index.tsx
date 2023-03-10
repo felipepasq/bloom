@@ -3,7 +3,11 @@ import Logo from '../../assets/logo.svg'
 import Star from '../../assets/start.svg'
 import SearchBar from '../SearchBar'
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  setSearch: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Header: React.FC<HeaderProps> = ({ setSearch }) => {
   return (
     <S.Header>
       <S.Container>
@@ -12,7 +16,7 @@ const Header: React.FC = () => {
             <img src={Logo} className="logo" alt="Logo da empresa bloom" />
           </a>
         </S.Logo>
-        <SearchBar />
+        <SearchBar setSearch={setSearch} />
         <img
           src={Star}
           className="icon"

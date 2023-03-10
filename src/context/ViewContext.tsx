@@ -1,4 +1,10 @@
-import React, { createContext, useState, ReactNode, useContext } from 'react'
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+  useMemo
+} from 'react'
 
 type ViewContextProviderProps = {
   children: ReactNode
@@ -12,10 +18,12 @@ export const ViewContext = createContext<ViewContextData>({} as ViewContextData)
 export const ViewContextProvider = ({ children }: ViewContextProviderProps) => {
   const [viewType, setViewType] = useState<'list' | 'grid'>('list')
 
+  const contextValue = useMemo(() => {
+    return { viewType, setViewType }
+  }, [viewType])
+
   return (
-    <ViewContext.Provider value={{ viewType, setViewType }}>
-      {children}
-    </ViewContext.Provider>
+    <ViewContext.Provider value={contextValue}>{children}</ViewContext.Provider>
   )
 }
 
