@@ -30,3 +30,8 @@ export const CategoriesList = styled.div<CategoriesListListProps>`
     max-width: 1080px;
   }
 `
+export const NotFoundText = styled.h2`
+  font-size: 1.8rem;
+  font-family: ${({ theme }) => theme.fonts.text};
+  color: ${({ theme }) => theme.colors.gray};
+`

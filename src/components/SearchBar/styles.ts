@@ -7,7 +7,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
   padding: 0.8rem 1.2rem;
-  margin-top: 0.8rem;
+  margin: 0.8rem 1.6rem 1.2rem 0;
   max-width: 368px;
   gap: 1.2rem;
   border-radius: 1.6rem;
@@ -22,6 +22,6 @@ export const Container = styled.div`
   }
 
   @media (min-width: 768px) {
-    margin-top: 0;
+    margin: 0;
   }
 `

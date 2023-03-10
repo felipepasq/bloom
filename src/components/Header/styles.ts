@@ -11,13 +11,13 @@ export const Container = styled.div`
   align-items: center;
   max-width: 128rem;
   margin: auto;
-  padding: 1.2rem 1.6rem;
+  padding-left: 1.6rem;
 
   .search {
     order: 3;
   }
 
-  .icon {
+  .favorites {
     order: 2;
   }
 
@@ -26,18 +26,18 @@ export const Container = styled.div`
     flex-wrap: unset;
     flex-direction: row;
     justify-content: unset;
-    padding: 1.8rem 12rem;
+    padding: 0 12rem;
     .search {
       order: 2;
     }
 
-    .icon {
+    .favorites {
       margin-left: auto;
     }
   }
 `
 export const Logo = styled.div`
-  width: 90%;
+  width: 82%;
 
   img {
     width: 14.4rem;
@@ -53,5 +53,27 @@ export const Logo = styled.div`
       height: 3.8rem;
       order: 1;
     }
+  }
+`
+type FavoritesImageContainerProps = {
+  isActive: boolean
+}
+export const FavoritesImageContainer = styled.div<FavoritesImageContainerProps>`
+  width: 5.6rem;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ isActive }) => (isActive ? '#0B1A8E' : 'unset')};
+  justify-content: center;
+  cursor: pointer;
+  img {
+    margin: 0 auto;
+    height: 2.3rem;
+    width: 2.4rem;
+  }
+
+  @media (min-width: 768px) {
+    height: 6rem;
+    width: 6.4rem;
   }
 `

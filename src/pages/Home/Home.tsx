@@ -8,15 +8,19 @@ import { useEffect, useState } from 'react'
 import { Category } from '../../types'
 import { api } from '../../services/api'
 import { useView } from '../../context/ViewContext'
+import FavoritesBar from '../../components/FavoritesBar'
+import { useFavorites } from '../../context/FavoritesContext'
+import Loader from '../../components/Loader'
 
 const Home = () => {
-  const { viewType } = useView()
   const [allCategories, setAllCategories] = useState<Category[]>([])
   const [itemsPerPage, setItemsPerPage] = useState(5)
   const [currentPage, setCurrentPage] = useState(1)
   const [search, setSearch] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(0)
+  const { showFavoritesBar } = useFavorites()
+  const { viewType } = useView()
 
   const fetchCategories = async () => {
     try {
@@ -26,6 +30,8 @@ const Home = () => {
       setTotalPages(Math.ceil(data.length / itemsPerPage))
     } catch (error) {
       toast('Ocorreu um erro ao buscar as categorias dos livros !')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -76,6 +82,7 @@ const Home = () => {
 
   return (
     <>
+      {showFavoritesBar ? <FavoritesBar isActive={showFavoritesBar} /> : null}
       <Header setSearch={setSearch} />
       <ViewOptionsBar
         barText="Gêneros"
@@ -84,9 +91,25 @@ const Home = () => {
         setCurrentPage={setCurrentPage}
       />
       <S.Main>
-        <S.CategoriesList viewType={viewType}>
-          {search.length > 0
-            ? filteredItems.map((category: Category) => {
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <S.CategoriesList viewType={viewType}>
+            {search.length > 0 ? (
+              filteredItems.length > 0 ? (
+                filteredItems.map((category: Category) => {
+                  return (
+                    <CategoryCard
+                      key={category.list_name_encoded}
+                      category={category}
+                    />
+                  )
+                })
+              ) : (
+                <S.NotFoundText>Nenhum resultado encontrado</S.NotFoundText>
+              )
+            ) : (
+              items.map((category: Category) => {
                 return (
                   <CategoryCard
                     key={category.list_name_encoded}
@@ -94,20 +117,16 @@ const Home = () => {
                   />
                 )
               })
-            : items.map((category: Category) => {
-                return (
-                  <CategoryCard
-                    key={category.list_name_encoded}
-                    category={category}
-                  />
-                )
-              })}
-        </S.CategoriesList>
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+            )}
+          </S.CategoriesList>
+        )}
+        {totalPages > 1 ? (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        ) : null}
       </S.Main>
     </>
   )

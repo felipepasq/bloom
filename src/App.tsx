@@ -4,6 +4,7 @@ import { defaultTheme } from './styles/themes/default'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './Router'
 import { ViewContextProvider } from './context/ViewContext'
+import { FavoritesContextProvider } from './context/FavoritesContext'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
@@ -13,7 +14,7 @@ function App() {
       <GlobalStyle />
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -23,9 +24,11 @@ function App() {
         pauseOnHover
         theme="colored"
       />
-      <ViewContextProvider>
-        <RouterProvider router={router} />
-      </ViewContextProvider>
+      <FavoritesContextProvider>
+        <ViewContextProvider>
+          <RouterProvider router={router} />
+        </ViewContextProvider>
+      </FavoritesContextProvider>
     </ThemeProvider>
   )
 }

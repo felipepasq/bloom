@@ -10,6 +10,9 @@ import { toast } from 'react-toastify'
 import { generateRandomPrice, getCategoryFromURL } from '../../utils'
 import Pagination from '../../components/Pagination'
 import { Book } from '../../types'
+import { useFavorites } from '../../context/FavoritesContext'
+import FavoritesBar from '../../components/FavoritesBar'
+import Loader from '../../components/Loader'
 const BooksPage: React.FC = () => {
   const [itemsPerPage, setItemsPerPage] = useState(5)
   const [allBooks, setAllBooks] = useState<Book[]>([])
@@ -18,8 +21,10 @@ const BooksPage: React.FC = () => {
     Math.ceil(allBooks.length / itemsPerPage)
   )
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const location = useLocation()
   const { viewType } = useView()
+  const { showFavoritesBar } = useFavorites()
   const categoryName = location.state.categoryName
   const categoryCode = getCategoryFromURL(location.pathname)
 
@@ -37,9 +42,12 @@ const BooksPage: React.FC = () => {
           return book
         }
       })
+      setTotalPages(Math.ceil(data.length / itemsPerPage))
       setAllBooks(booksWithPrice)
     } catch (error) {
       toast('Ocorreu um erro ao buscar os livros !')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -88,6 +96,7 @@ const BooksPage: React.FC = () => {
 
   return (
     <>
+      {showFavoritesBar ? <FavoritesBar isActive={showFavoritesBar} /> : null}
       <Header setSearch={setSearch} />
       <ViewOptionsBar
         barText={categoryName}
@@ -96,20 +105,33 @@ const BooksPage: React.FC = () => {
         setCurrentPage={setCurrentPage}
       />
       <S.Main>
-        <S.BooksList viewType={viewType}>
-          {search.length > 0
-            ? filteredItems.map((book: Book) => {
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <S.BooksList viewType={viewType}>
+            {search.length > 0 ? (
+              filteredItems.length > 0 ? (
+                filteredItems.map((book: Book) => {
+                  return <BookCard key={book.title} book={book} />
+                })
+              ) : (
+                <S.NotFoundText>Nenhum resultado encontrado</S.NotFoundText>
+              )
+            ) : (
+              items.map((book: Book) => {
                 return <BookCard key={book.title} book={book} />
               })
-            : items.map((book: Book) => {
-                return <BookCard key={book.title} book={book} />
-              })}
-        </S.BooksList>
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+            )}
+          </S.BooksList>
+        )}
+
+        {totalPages > 1 ? (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        ) : null}
       </S.Main>
     </>
   )
